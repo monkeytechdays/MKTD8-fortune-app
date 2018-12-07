@@ -94,7 +94,7 @@ can write code that looks sequential while being non-blocking.
 Validate your implementation by passing the following test.
 
 ``` shell
-./gradlew testDebugUnitTest --tests FortuneTest
+./gradlew testDebugUnitTest --tests FortuneRepositoryImplTest
 ```
 
 (Note: this test will use WireMock to setup a temporary HTTP server, mocking the
