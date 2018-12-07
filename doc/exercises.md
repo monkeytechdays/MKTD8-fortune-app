@@ -7,7 +7,7 @@ The goal of this introductory workshop is to introduce you to the basic
 structure of a Kotlin multi-platform application, by building a toy app.
 
 The application itself is a simple fortune app, which displays random fortunes
-from a backend server at https://monkeyconf.herokuapp.com/fortunes. User will
+from a backend server at <https://monkeyconf.herokuapp.com/fortunes>. User will
 also have the possibility to save a fortune in its favorites.
 
 We will use
@@ -64,7 +64,7 @@ After implementing the model, test code will compile and FortuneTest should pass
 ## Exercise 2 : Data access ##
 
 As mentioned earlier, the fortunes data is not stored locally, but exposed by a
-REST API at https://monkeyconf.herokuapp.com/fortunes.
+REST API at <https://monkeyconf.herokuapp.com/fortunes>.
 
 As we don't want to pollute our presenter code with details on how to access
 this HTTP API, we will implement data access in a separate `FortuneRepositoryImpl`
@@ -73,17 +73,17 @@ class which implements methods in `FortuneRepository`.
 (Doing this separation will make our Presenter logic easily testable, by mocking
 the `FortuneRepository` interface)
 
-Fortunately, thanks to Kotlinx Serialization and Ktor HTTP client library we can
+Fortunately, thanks to [Kotlinx Serialization](https://github.com/Kotlin/kotlinx.serialization) and Ktor HTTP client library we can
 implement `FortuneRepositoryImpl` in a cross-platform way.
 
 Using JsonFeature, create a Ktor HTTP client able to deserialize `Fortune` data.
-https://ktor.io/clients/http-client/features/json-feature.html
+<https://ktor.io/clients/http-client/features/json-feature.html>
 
 Then implement the `getRandomFortune()` method, by performing a GET call to the
 URL provided in the constructor.
 
 You will notice that this method is declared using the `suspend` keyword. This
-means that `getRandomFortune` will need to be called from a coroutine, and that
+means that `getRandomFortune` will need to be called from a [coroutine](https://kotlinlang.org/docs/reference/coroutines-overview.html), and that
 it will suspend the coroutine (but the underlying thread will be released) and
 resume it when data is available.
 
@@ -94,13 +94,13 @@ can write code that looks sequential while being non-blocking.
 Validate your implementation by passing the following test.
 
 ``` shell
-./gradlew testDebugUnitTest --tests FortuneRepositoryImplTest
+./gradlew testDebugUnitTest --tests FortuneTest
 ```
 
 (Note: this test will use WireMock to setup a temporary HTTP server, mocking the
 backend interface)
 
-## Exercice 3 : The presenter ##
+## Exercise 3 : The presenter ##
 
 The presenter will act on the UI, through the `FortuneView` interface, and
 access data through the `FortuneRepository` interface. Its role is to
@@ -133,13 +133,13 @@ As usual, run the tests and validate your implementation using the following com
 ## Exercise 4 : The view ##
 
 Now that we have our Model and our Presenter ready, let's implement the View !
-On Android the View is implemented by MainActivity. On iOS it is implemented by
+On Android the View is implemented by `MainActivity`. On iOS it is implemented by
 a ViewController. 
 
 To help you we have created a basic (but functional) layout/storyboard of the
 screen.
 
-Your job is to implement the FortuneView methods in these classes.
+Your job is to implement the `FortuneView` methods in these classes.
 
 The iOS part will be need to be done with Xcode using the Swift language.
 
@@ -157,7 +157,7 @@ A part of the common logic is implemented in `FavoriteFortuneRepositoryImpl`
 through PreferenceHelper.
 
 Using the guidelines at
-https://kotlinlang.org/docs/reference/platform-specific-declarations.html, we
+<https://kotlinlang.org/docs/reference/platform-specific-declarations.html>, we
 have defined `PreferenceHelperImpl` as an expect class, and actual
 implementation in platform specific packages. Go and provide the actual
 implementations for each platform.
